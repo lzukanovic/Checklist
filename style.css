@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800&display=swap');
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: #3F403F;
+    font-family: 'Recursive', sans-serif;
+    font-weight: 400;
+    color: #3F403F;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.list-title {
+    color: white;/*#CED0CE;*/
+    margin: 80px 0 25px 0;
+    font-size: 45px;
+    display: flex;
+    justify-content: center;
+}
+
+.list-title input {
+    display: none;
+}
+
+.list-title.edit span {
+    display: none;
+}
+
+.list-title.edit input {
+    background-color: #3F403F;
+    color: white;
+    display: initial;
+    font-size: 45px;
+    /* margin: 0 50% 0 50%; */
+    /* min-width: 250px; */
+    width: 50%;
+}
+
+.list {
+    background-color: white;
+    /* border-radius: 5px; */
+    margin: 0 35% 0 35%;
+    box-shadow: 0px 0px 2px gray;
+    padding: 20px;
+}
+
+ul, input {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+input {
+    /* border: 0; */
+    font-family: inherit;
+}
+
+/* input:focus {
+    outline: none;
+} */
+
+li {
+    margin-bottom: 4px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+li input {
+    display: none;
+}
+
+li.edit span {
+    display: none;
+}
+
+li.edit input {
+    display: initial;
+}
+
+.new-li {
+    border-bottom: 2px solid #CED0CE;
+    color: #CED0CE;
+    margin-bottom: 0px;
+    min-width: 50%;
+    max-width: 50%;
+}
+
+.new-li:hover {
+    border-bottom: 2px solid #3F403F;
+    color: #3F403F;
+}
+
+.active {
+    border-bottom: 2px solid #3F403F;
+    color: #3F403F;
+}
+
+.checked {
+    color: #CED0CE;
+    text-decoration: line-through;
+}
+
+footer {
+    background-color: #475841;
+    flex-shrink: 0;
+    color: white;
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 1350px) {
+    .list {
+        margin: 0 30% 0 30%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .list-title {
+        font-size: 40px;
+    }
+
+    .list-title.edit input {
+        font-size: 40px;
+    }
+    
+    .list {
+        margin: 0 25% 0 25%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .list {
+        margin: 0 20% 0 20%;
+    }
+
+    ul, input {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .list-title {
+        font-size: 35px;
+    }
+
+    .list-title.edit input {
+        font-size: 35px;
+    }
+    
+    .list {
+        margin: 0 15% 0 15%;
+    }
+    
+    ul, input {
+        font-size: 16px;
+    }
+
+    /* input {
+        max-width: 150px;
+    } */
+}
+
+@media only screen and (max-width: 350px) {
+   /*  .list-title.edit input {
+        min-width: 150px;
+    } */
+}
