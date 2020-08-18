@@ -1,7 +1,7 @@
 var items = (function () {
     
     var list = [];
-    var $module, title, itemList, items, inputs, newItemField, newInput, template;
+    var $module, title, titleInput, itemList, items, inputs, newItemField, newInput, template;
     updateDOM();
     updateListeners();
     
@@ -12,8 +12,12 @@ var items = (function () {
     function edit() {
         $(this).addClass('edit');
         var input = $(this).find('input');
-        input[0].focus();
-        input[0].setSelectionRange(0, input[0].value.length);
+        input[0].focus(); // set input focus
+        // input[0].setSelectionRange(0, input[0].value.length); // select whole input text
+        // place cursor at the end
+        var tmp = input[0].value;
+        input[0].value = '';
+        input[0].value = tmp;
     };
 
     function save() {
@@ -22,7 +26,7 @@ var items = (function () {
             addItem(newInput[0].value);
             newInput[0].value = "";
         } else {
-            //console.log("saving input to span");
+            // console.log("saving input to span");
             this.previousElementSibling.innerHTML = this.value;
         }
         $(this.parentNode).removeClass('edit');
@@ -31,6 +35,7 @@ var items = (function () {
     function updateDOM() {
         $module = $('.content');
         title = $module.find('.list-title');
+        titleInput = title.find('input');
         itemList = $module.find('#item-list');
         items = $module.find('li');
         inputs = items.find('input');
@@ -41,6 +46,11 @@ var items = (function () {
 
     function updateListeners() {
         title.on('click', edit);
+        titleInput.on('blur', save);
+        titleInput.on('keypress', function(e) {
+            if (e.which === 13)
+                save.call(this);
+        });
 
         items.on('click', edit);
         items.slice(0, -1).on('contextmenu', checkItem);

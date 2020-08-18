@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800&display=swap');
 
+:root {
+    --primary-color: #3F403F;
+    --secondary-color: #475841;
+    --accent-color: #CED0CE;
+}
+
 html, body {
     height: 100%;
 }
 
 body {
-    background: #3F403F;
+    background: var(--primary-color);
     font-family: 'Recursive', sans-serif;
     font-weight: 400;
-    color: #3F403F;
+    color: var(--primary-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -20,7 +26,7 @@ body {
 }
 
 .list-title {
-    color: white;/*#CED0CE;*/
+    color: white;
     margin: 80px 0 25px 0;
     font-size: 45px;
     display: flex;
@@ -36,7 +42,8 @@ body {
 }
 
 .list-title.edit input {
-    background-color: #3F403F;
+    background-color: var(--primary-color);
+    border-bottom: 2px solid white;
     color: white;
     display: initial;
     font-size: 45px;
@@ -60,13 +67,13 @@ ul, input {
 }
 
 input {
-    /* border: 0; */
+    border: 0;
     font-family: inherit;
 }
 
-/* input:focus {
+input:focus {
     outline: none;
-} */
+}
 
 li {
     margin-bottom: 4px;
@@ -87,30 +94,30 @@ li.edit input {
 }
 
 .new-li {
-    border-bottom: 2px solid #CED0CE;
-    color: #CED0CE;
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--accent-color);
     margin-bottom: 0px;
     min-width: 50%;
     max-width: 50%;
 }
 
 .new-li:hover {
-    border-bottom: 2px solid #3F403F;
-    color: #3F403F;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
 .active {
-    border-bottom: 2px solid #3F403F;
-    color: #3F403F;
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
 }
 
 .checked {
-    color: #CED0CE;
+    color: var(--accent-color);
     text-decoration: line-through;
 }
 
 footer {
-    background-color: #475841;
+    background-color: var(--secondary-color);
     flex-shrink: 0;
     color: white;
     text-align: center;
