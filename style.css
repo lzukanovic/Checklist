@@ -76,7 +76,7 @@ input:focus {
 }
 
 li {
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     margin-left: 30px;
     margin-right: 30px;
 }
@@ -109,6 +109,7 @@ li.edit input {
 .active {
     border-bottom: 2px solid var(--primary-color);
     color: var(--primary-color);
+    min-width: 76%;
 }
 
 .checked {

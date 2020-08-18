@@ -1,3 +1,10 @@
+// TODO: saving new items to array
+// TODO: deleting checked items from array, but visually getting rid of them after some time
+// TODO: saving array locally to client
+// TODO: upgrade footer to animation when user clicks help FAB
+// TODO: improve styling
+// TODO: breakpoint for long words
+
 var items = (function () {
     
     var list = [];
