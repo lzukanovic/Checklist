@@ -10,34 +10,39 @@
         <div class="content">
             <section class="list-title">
                 <span>List Title &#128203;</span>
-                <input type="text" value="List Title &#128203;"> 
+                <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">List Title &#128203;</textarea>
             </section>
             <section class="list">
                 <ul id="item-list">
                     <li>
                         <span>Left click to edit items &#128679;</span>
-                        <input type="text" value="Left click to edit items &#128679;">
+                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Left click to edit items &#128679;</textarea>
                     </li>
                     <li>
                         <span>Click somewhere else or press enter to save.</span>
-                        <input type="text" value="Click somewhere else or press enter to save.">
+                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Click somewhere else or press enter to save.</textarea>
                     </li>
                     <li>
                         <span>Right click to mark item as done &#9989;</span>
-                        <input type="text" value="Right click to mark item as done &#9989;"> 
+                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Right click to mark item as done &#9989;</textarea>
+                    </li>
+                    <li>
+                        <span>llllllloooooooooooooooooooooooooooonnnnnnnnnnnnnnnngggggggggggggggggggggg</span>
+                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">llllllloooooooooooooooooooooooooooonnnnnnnnnnnnnnnngggggggggggggggggggggg</textarea>
                     </li>
 
                     <script id="list-item-template" type="text/template">
                         <li>
                             <span>{{itemName}}</span>
-                            <input type="text" value="{{itemName}}">
+                            <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">{{itemName}}</textarea>
                         </li>
                     </script>
 
                     <li class="new-li">
                         <span></span>
-                        <input type="text">
+                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)"></textarea>
                     </li>
+
                 </ul>
             </section>
         </div>
