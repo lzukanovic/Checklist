@@ -3,8 +3,14 @@
     from {min-width: 0;}
     to {min-width: 76%;}
 }
-@keyframes extend-omni {
-    from {width: 0;}
+
+@keyframes retract {
+    from {min-width: 76%;}
+    to {min-width: 50%;}
+}
+
+@keyframes reveal {
+    from {width: 0%;}
     to {width: 50%;}
 }
 
@@ -63,8 +69,7 @@ body {
     display: initial;
     font-size: 45px;
     width: 50%;
-    animation-name: extend-omni;
-    animation-duration: 0.2s;
+    /* animation: reveal 1s ease; */
 }
 
 /*
@@ -99,6 +104,8 @@ li:first-child {
     margin-bottom: 0px;
     min-width: 50%;
     max-width: 50%;
+    animation: retract 0.3s ease;
+
 }
 
 .new-li:hover {
@@ -106,7 +113,8 @@ li:first-child {
     color: var(--primary-color);
 }
 
-span {
+li > div {
+    border: none;
     word-wrap: break-word;
 }
 
@@ -115,7 +123,6 @@ textarea {
     color: inherit;
     font-family: inherit;
     font-size: inherit;
-    height: 28px;
     margin: 0;
     overflow: hidden;
     padding: 0;
@@ -135,7 +142,7 @@ li textarea {
     display: none;
 }
 
-li.edit span {
+li.edit div {
     display: none;
 }
 
@@ -147,8 +154,7 @@ li.edit textarea {
     border-bottom: 2px solid var(--primary-color);
     color: var(--primary-color);
     min-width: 76%;
-    animation-name: extend;
-    animation-duration: 0.2s;
+    animation: extend 0.3s ease;
 }
 
 .checked {

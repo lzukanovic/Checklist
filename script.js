@@ -1,9 +1,12 @@
 // TODO: saving new items to array
 // TODO: deleting checked items from array, but visually getting rid of them after some time
 // TODO: saving array locally to client
+
 // TODO: upgrade footer to animation when user clicks help FAB
 // TODO: improve styling
-// TODO: add animations for focused lines
+// TODO: add animations for title editing
+// TODO: fix bullet move for single line items
+// TODO: fix double click to select text in edit mode
 
 var items = (function () {
     
@@ -20,6 +23,7 @@ var items = (function () {
     };
 
     function edit() {
+        // $(this).off("click");
         $(this).addClass('edit');
         var input = $(this).find('textarea');
         input[0].focus(); // set input focus
@@ -39,6 +43,7 @@ var items = (function () {
         }
 
         $(this.parentNode).removeClass('edit');
+        // updateListeners();
     };
 
     function updateDOM() {
