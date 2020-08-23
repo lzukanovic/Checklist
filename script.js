@@ -4,11 +4,8 @@
 
 // TODO: upgrade footer to animation when user clicks help FAB
 // TODO: improve styling
-// TODO: fix bullet move for single line items
-// TODO: fix double click to select text in edit mode
-// TODO: fix list touching footer when it gets longer
-// TODO: fix new list input color when input is made with enter press on mobile
-// TODO: title center text alignment (more to do with word wrap)
+// TODO: fix bullet move for single line with emoji
+// TODO: remove new item input animation on page load
 
 var items = (function () {
     
@@ -25,10 +22,10 @@ var items = (function () {
     };
 
     function edit() {
-        // $(this).off("click");
+        $(this).off();
         $(this).addClass('edit');
         var input = $(this).find('textarea');
-        input[0].focus(); // set input focus
+        input[0].focus();
 
         // place cursor at the end
         var tmp = input[0].value;
@@ -42,10 +39,11 @@ var items = (function () {
             newInput[0].value = "";
         } else {
             this.previousElementSibling.innerHTML = this.value;
+            $(this.parentElement).on('click', edit);
+            $(this.parentElement).on('contextmenu', checkItem);
         }
 
         $(this.parentNode).removeClass('edit');
-        // updateListeners();
     };
 
     function updateDOM() {
@@ -69,7 +67,7 @@ var items = (function () {
         });
 
         items.on('click', edit);
-        items.slice(0, -1).on('contextmenu', checkItem); // disable right click on new item input
+        items.slice(0, -1).on('contextmenu', checkItem); // handle right click event only on valid list elements
 
         inputs.on('blur', save);
         inputs.on('keypress', function(e) {
