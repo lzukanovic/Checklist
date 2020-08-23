@@ -13,7 +13,7 @@
 @keyframes retract {
     from {
         min-width: 76%;
-        border-bottom: 2px solid var(--primary-color);
+        border-bottom: 2px solid var(--text-color);
     }
     to {
         min-width: 50%;
@@ -21,10 +21,34 @@
     }
 }
 
+@keyframes hover-color {
+    from {
+        border-bottom: 2px solid var(--accent-color);
+        color: var(--accent-color);
+    }
+    to {
+        border-bottom: 2px solid var(--text-color);
+        color: var(--text-color);
+    }
+}
+
+@keyframes showTitle {
+    from {clip-path: inset(0 100%);}
+    to {clip-path: inset(0);}
+}
+
+@keyframes hideTitle {
+    from {clip-path: inset(0);}
+    to {clip-path: inset(0 100%);}
+}
+
 :root {
-    --primary-color: #3F403F;
-    --secondary-color: #475841;
-    --accent-color: #CED0CE;
+    --primary-color: #121212;
+    --secondary-color: #00251a;
+    --less-dark-gray: #272727;
+    --text-color: #ffffff;
+    --secondary-text-color: #ffffff;
+    --accent-color: rgb(70, 70, 70);
 }
 
 html, body {
@@ -35,7 +59,7 @@ body {
     background: var(--primary-color);
     font-family: 'Recursive', sans-serif;
     font-weight: 400;
-    color: var(--primary-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -51,7 +75,6 @@ body {
 *   TITLE
 */
 .list-title {
-    color: white;
     margin: 80px 0 25px 0;
     font-size: 45px;
     display: flex;
@@ -61,7 +84,7 @@ body {
 .list-title div {
     margin: 0 25%;
     min-width: 1%;
-    text-align: justify;
+    text-align: left;
     /* word-break: break-all; */
 }
 
@@ -75,27 +98,27 @@ body {
 
 .list-title.edit textarea {
     background-color: var(--primary-color);
-    border-bottom: 2px solid white;
-    color: white;
+    border-bottom: 2px solid var(--text-color);
+    /* color: var(--text-color); */
     clip-path: inset(0 100%);
     display: initial;
     font-size: 45px;
     overflow: hidden;
-    text-align: justify;
+    text-align: left;
     transition: clip-path 0.2s ease-out;
     /* word-break: break-all; */
     width: 50%;
 }
 
 .list-title.edit textarea:focus {
-    clip-path: inset(0)
+    clip-path: inset(0);
 }
 
 /*
 *   LIST
 */
 .list {
-    background-color: white;
+    background-color: var(--less-dark-gray);
     margin: 0 30% 0 30%;
     /* box-shadow: 0px 0px 3px grey; */
     padding: 20px;
@@ -127,6 +150,7 @@ li > div {
 }
 
 textarea {
+    background-color: var(--less-dark-gray);
     border: none;
     color: inherit;
     font-family: inherit;
@@ -165,14 +189,17 @@ li.edit textarea {
     min-height: 26px;
     min-width: 50%;
     max-width: 50%;
-    animation: retract 0.5s ease;
 }
 
 .active {
-    border-bottom: 2px solid var(--primary-color);
-    color: var(--primary-color);
+    border-bottom: 2px solid var(--text-color);
+    color: var(--text-color);
     min-width: 76%;
     animation: extend 0.4s ease;
+}
+
+.deactive {
+    animation: retract 0.5s ease;
 }
 
 .checked {
@@ -186,8 +213,13 @@ li.edit textarea {
 footer {
     background-color: var(--secondary-color);
     /* flex-shrink: 0; */
-    color: white;
+    color: var(--secondary-text-color);
+    padding: 25px 0;
     text-align: center;
+}
+
+p {
+    margin: 0;
 }
 
 /*
@@ -252,7 +284,8 @@ footer {
 /* mouse, touch pad */
 @media (hover: hover) and (pointer: fine) {
     .new-li:hover {
-        border-bottom: 2px solid var(--primary-color);
-        color: var(--primary-color);
+        /* animation: hover-color 0.4s ease; */
+        border-bottom: 2px solid var(--text-color);
+        color: var(--text-color);
     }
 }

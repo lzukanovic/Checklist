@@ -4,8 +4,10 @@
 
 // TODO: upgrade footer to animation when user clicks help FAB
 // TODO: improve styling
+//          - title font size
+//          - title text aligment
+//          - sizes and spacing for larger devices
 // TODO: fix bullet move for single line with emoji
-// TODO: remove new item input animation on page load
 
 var items = (function () {
     
@@ -15,10 +17,13 @@ var items = (function () {
     updateListeners();
     
     function newListItemActivity() {        
-        if ($(this).is(":focus"))
+        if ($(this).is(":focus")) {
             $(this.parentNode).addClass('active');
-        else
+            $(this.parentNode).removeClass('deactive');
+        } else {
             $(this.parentNode).removeClass('active');
+            $(this.parentNode).addClass('deactive');
+        }
     };
 
     function edit() {
