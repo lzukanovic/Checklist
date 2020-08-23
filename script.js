@@ -4,9 +4,11 @@
 
 // TODO: upgrade footer to animation when user clicks help FAB
 // TODO: improve styling
-// TODO: add animations for title editing
 // TODO: fix bullet move for single line items
 // TODO: fix double click to select text in edit mode
+// TODO: fix list touching footer when it gets longer
+// TODO: fix new list input color when input is made with enter press on mobile
+// TODO: title center text alignment (more to do with word wrap)
 
 var items = (function () {
     
