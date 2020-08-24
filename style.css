@@ -44,11 +44,12 @@
 
 :root {
     --primary-color: #121212;
-    --secondary-color: #00251a;
+    --secondary-color: #8FD5A6;
+    --secondary-color-dark: #5fa377;
     --less-dark-gray: #272727;
     --text-color: #ffffff;
-    --secondary-text-color: #ffffff;
-    --accent-color: rgb(70, 70, 70);
+    --secondary-text-color: #000000;
+    --accent-color: #464646;
 }
 
 html, body {
@@ -207,19 +208,56 @@ li.edit textarea {
     text-decoration: line-through;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#myButton {
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 15px 15px 0 0;
+    color: var(--primary-color);
+    font-size: 20px;
+    height: 40px;
+    margin-right: 15px;
+    position: relative;
+    width: 60px;
+}
+
+#myButton:focus {
+    outline: none;
+}
+
+.footerLip {
+    background-color: var(--secondary-color);
+    height: 10px;
+}
+
 /* 
 *   FOOTER 
 */
 footer {
     background-color: var(--secondary-color);
+    display: none;
     /* flex-shrink: 0; */
     color: var(--secondary-text-color);
-    padding: 25px 0;
+    padding-top: 25px;
     text-align: center;
 }
 
 p {
     margin: 0;
+    /* font-weight: 500; */
+}
+
+.copyright {
+    background-color: var(--secondary-color-dark);
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    vertical-align: middle;
 }
 
 /*

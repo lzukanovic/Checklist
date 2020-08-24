@@ -2,7 +2,6 @@
 // TODO: deleting checked items from array, but visually getting rid of them after some time
 // TODO: saving array locally to client
 
-// TODO: upgrade footer to animation when user clicks help FAB
 // TODO: improve styling
 //          - title font size
 //          - title text aligment
@@ -12,7 +11,7 @@
 var items = (function () {
     
     var list = [];
-    var $module, title, titleInput, itemList, items, inputs, newItemField, newInput, template;
+    var $module, title, titleInput, items, inputs, newItemField, newInput, template;
     updateDOM();
     updateListeners();
     
@@ -55,7 +54,6 @@ var items = (function () {
         $module = $('.content');
         title = $module.find('.list-title');
         titleInput = title.find('textarea');
-        itemList = $module.find('#item-list');
         items = $module.find('li');
         inputs = items.find('textarea');
         newItemField = $module.find('.new-li');
@@ -118,3 +116,21 @@ var items = (function () {
     }
 
 })();
+
+$("#myButton").click(function(){
+    var icon = this.children[0];
+
+    if ($("#myFooter").is(":visible")) {
+        $("#myFooter").slideUp(500);
+        // ?
+        $(icon).removeClass('fa-times');
+        $(icon).addClass('fa-question');
+        
+    } else {
+        $("#myFooter").slideDown(500);
+        // x
+        $(icon).removeClass('fa-question');
+        $(icon).addClass('fa-times');
+    }
+
+});
