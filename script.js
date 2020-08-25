@@ -2,10 +2,6 @@
 // TODO: deleting checked items from array, but visually getting rid of them after some time
 // TODO: saving array locally to client
 
-// TODO: improve styling
-//          - title font size
-//          - title text aligment
-//          - sizes and spacing for larger devices
 // TODO: fix bullet move for single line with emoji
 
 var items = (function () {

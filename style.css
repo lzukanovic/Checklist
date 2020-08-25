@@ -69,15 +69,15 @@ body {
 
 .content {
     flex: 1 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* spacing from footer */
 }
 
 /* 
 *   TITLE
 */
 .list-title {
-    margin: 80px 0 25px 0;
-    font-size: 45px;
+    margin: 80px 0 2% 0;
+    font-size: 41px;
     display: flex;
     justify-content: center;
 }
@@ -103,7 +103,7 @@ body {
     /* color: var(--text-color); */
     clip-path: inset(0 100%);
     display: initial;
-    font-size: 45px;
+    font-size: 41px;
     overflow: hidden;
     text-align: left;
     transition: clip-path 0.2s ease-out;
@@ -139,6 +139,10 @@ li {
 
 li:first-child {
     margin-top: 3%;
+}
+
+li:last-child {
+    margin-bottom: 3%;
 }
 
 li > div {
@@ -249,6 +253,7 @@ footer {
 p {
     margin: 0;
     /* font-weight: 500; */
+    padding: 0 20px;
 }
 
 .copyright {
@@ -264,6 +269,14 @@ p {
 *   RESPONSIVE
 */
 @media only screen and (max-width: 1350px) {
+    .list-title {
+        font-size: 39px;
+    }
+
+    .list-title.edit textarea {
+        font-size: 39px;
+    }
+    
     .list {
         margin: 0 30% 0 30%;
     }
@@ -271,11 +284,12 @@ p {
 
 @media only screen and (max-width: 1000px) {
     .list-title {
-        font-size: 40px;
+        font-size: 37px;
+        margin: 50px 0 3% 0;
     }
 
     .list-title.edit textarea {
-        font-size: 40px;
+        font-size: 37px;
     }
     
     .list {
@@ -284,8 +298,21 @@ p {
 }
 
 @media only screen and (max-width: 800px) {
+    .list-title {
+        font-size: 35px;
+    }
+
+    .list-title div {
+        margin: 0 20%;
+    }
+
+    .list-title.edit textarea {
+        font-size: 35px;
+        width: 60%;
+    }
+    
     .list {
-        margin: 0 20% 0 20%;
+        margin: 0 20%;
     }
 
     ul {
@@ -299,15 +326,39 @@ p {
 
 @media only screen and (max-width: 600px) {
     .list-title {
-        font-size: 35px;
+        font-size: 32px;
+        margin: 50px 0 6% 0;
     }
 
     .list-title.edit textarea {
-        font-size: 35px;
+        font-size: 32px;
     }
     
     .list {
         margin: 0 15% 0 15%;
+    }
+    
+    ul {
+        font-size: 16px;
+    }
+
+    .new-li {
+        min-height: 19px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .list-title {
+        font-size: 27px;
+        margin: 40px 0 6% 0;
+    }
+
+    .list-title.edit textarea {
+        font-size: 27px;
+    }
+    
+    .list {
+        margin: 0 10% 0 10%;
     }
     
     ul {
