@@ -1,15 +1,47 @@
-// TODO: saving new items to array
-// TODO: deleting checked items from array, but visually getting rid of them after some time
-// TODO: saving array locally to client
+// TODO: updating existing items in db
+// TODO: deleting checked items from db, but visually getting rid of them after some time
 
 // TODO: fix bullet move for single line with emoji
 
+// TODO: upgrade scroll bar
+
+// Create an instance of a db object for us to store the open database in
+let db;
+
 var items = (function () {
     
-    var list = [];
-    var $module, title, titleInput, items, inputs, newItemField, newInput, template;
+    var $module, title, titleInput, list, items, inputs, newItemField, newInput, template;
     updateDOM();
     updateListeners();
+
+    function displayData() {
+        // remove previous list items to avoid duplication
+        items.slice(0, -1).remove();
+        
+        // query db to display the data
+        let objectStore = db.transaction('items_os').objectStore('items_os');
+        objectStore.openCursor().onsuccess = function(e) {
+            let cursor = e.target.result;
+            var html;
+            
+            if (cursor) {
+                html = template({itemName: cursor.value.itemName});
+                newItemField.before(html);
+                cursor.continue();
+            } else {
+                // no more cursor items to iterate through
+                // update DOM
+                updateDOM();
+                title.off();
+                titleInput.off();
+                items.off();
+                inputs.off();
+                newInput.off();
+                updateListeners();
+            }
+
+        };
+    };
     
     function newListItemActivity() {        
         if ($(this).is(":focus")) {
@@ -50,6 +82,7 @@ var items = (function () {
         $module = $('.content');
         title = $module.find('.list-title');
         titleInput = title.find('textarea');
+        list = $module.find('ul');
         items = $module.find('li');
         inputs = items.find('textarea');
         newItemField = $module.find('.new-li');
@@ -83,17 +116,20 @@ var items = (function () {
     };
 
     function addItem(itemName) {
-        var html = template({itemName: itemName});
-        newItemField.before(html);
-        updateDOM();
+        // save to db
+        let newItem = {itemName: itemName};
+        let transaction = db.transaction(['items_os'], 'readwrite');
+        let objectStore = transaction.objectStore('items_os');
+        let request = objectStore.add(newItem);
 
-        title.off();
-        titleInput.off();
-        items.off();
-        inputs.off();
-        newInput.off();
-
-        updateListeners();
+        transaction.oncomplete = function() {
+            console.log('Transaction completed: database modification finished.');
+            displayData();
+        };
+    
+        transaction.onerror = function() {
+            console.log('Transaction not opened due to error');
+        };
     };
 
     function checkItem() {
@@ -108,11 +144,61 @@ var items = (function () {
     };
 
     return {
-        autoGrow: autoGrow
+        autoGrow: autoGrow,
+        displayData: displayData
     }
 
 })();
 
+
+$(window).on('load', function () {
+
+    // Open the database
+    let request = window.indexedDB.open('items_db', 1);
+
+    // DB didn't open successfully
+    request.onerror = function() {
+        console.log('Database failed to open');
+    };
+    
+    // DB opened successfully
+    request.onsuccess = function() {
+        console.log('Database opened successfully');
+    
+        db = request.result;
+    
+        items.displayData();
+    };
+
+    // Setup the DB
+    request.onupgradeneeded = function(e) {
+        // Grab a reference to the opened database
+        let db = e.target.result;
+    
+        // Create an objectStore to store our notes in (basically like a single table)
+        let objectStore = db.createObjectStore('items_os', { keyPath: 'id', autoIncrement:true });
+    
+        // Define what data items the objectStore will contain
+        objectStore.createIndex('itemName', 'itemName', { unique: false });
+
+        // Add starting values
+        objectStore.transaction.oncomplete = function(event) {
+
+            var itemsObjectStore = db.transaction("items_os", "readwrite").objectStore("items_os");
+            
+            itemsObjectStore.add({itemName: "Left click to edit items 🚧"});
+            itemsObjectStore.add({itemName: "Click somewhere else or press enter to save."});
+            itemsObjectStore.add({itemName: "Right click (or long press if on mobile) to mark item as done 👈"});
+        };
+    
+        console.log('Database setup complete');
+    };
+});
+
+
+/*
+*   Handles footer help menu
+*/
 $("#myButton").click(function(){
     var icon = this.children[0];
 
