@@ -29,7 +29,7 @@
                     </li> -->
 
                     <script id="list-item-template" type="text/template">
-                        <li>
+                        <li data-item-id={{dataItemId}}>
                             <div>{{itemName}}</div>
                             <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">{{itemName}}</textarea>
                         </li>

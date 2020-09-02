@@ -25,7 +25,10 @@ var items = (function () {
             var html;
             
             if (cursor) {
-                html = template({itemName: cursor.value.itemName});
+                html = template({
+                    itemName: cursor.value.itemName,
+                    dataItemId: cursor.value.id
+                });
                 newItemField.before(html);
                 cursor.continue();
             } else {
@@ -133,8 +136,23 @@ var items = (function () {
     };
 
     function checkItem() {
+        let element = this;
         $(this).addClass('checked');
         $(this).off();
+
+        let itemId = Number(this.getAttribute('data-item-id'));
+        let transaction = db.transaction(['items_os'], 'readwrite');
+        let objectStore = transaction.objectStore('items_os');
+        let request = objectStore.delete(itemId);
+
+        transaction.oncomplete = function() {
+            
+            setTimeout( () => {
+                $(element).remove();
+                console.log('Item ' + itemId + ' deleted.');
+            }, 2000);
+        };
+
         return false;
     };
 
