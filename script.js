@@ -73,6 +73,19 @@ var items = (function () {
             addItem(newInput[0].value);
             newInput[0].value = "";
         } else {
+            // update item in db
+            let itemId = Number(this.parentElement.getAttribute('data-item-id'));
+            let objectStore = db.transaction(["items_os"], "readwrite").objectStore("items_os");
+            let requestUpdate = objectStore.put({itemName: this.value, id: itemId});
+            
+            requestUpdate.onerror = function(event) {
+                console.log('Transaction not opened due to error');
+            };
+            requestUpdate.onsuccess = function(event) {
+                console.log('Transaction completed: database update finished.');
+            };
+
+            // update html
             this.previousElementSibling.innerHTML = this.value;
             $(this.parentElement).on('click', edit);
             $(this.parentElement).on('contextmenu', checkItem);
@@ -126,7 +139,7 @@ var items = (function () {
         let request = objectStore.add(newItem);
 
         transaction.oncomplete = function() {
-            console.log('Transaction completed: database modification finished.');
+            console.log('Transaction completed: database addition finished.');
             displayData();
         };
     
