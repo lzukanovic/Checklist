@@ -14,6 +14,12 @@ var items = (function () {
     updateDOM();
     updateListeners();
 
+    function displayTitle() {
+        let titleName = localStorage.getItem("titleName");
+        $(title).find('div').html(titleName);
+        titleInput.html(titleName);
+    }
+
     function displayData() {
         // remove previous list items to avoid duplication
         items.slice(0, -1).remove();
@@ -72,7 +78,17 @@ var items = (function () {
         if (newInput[0].value) {
             addItem(newInput[0].value);
             newInput[0].value = "";
-        } else {
+        } else if ($(this.parentElement).attr('id') == 'list-title') {
+            // update item in localstorage
+            localStorage.setItem("titleName", this.value);
+            console.log('Localstorage update finished.');
+            
+            // update html
+            this.previousElementSibling.innerHTML = this.value;
+            $(this.parentElement).on('click', edit);
+            $(this.parentElement).on('contextmenu', checkItem);
+        }
+        else {
             // update item in db
             let itemId = Number(this.parentElement.getAttribute('data-item-id'));
             let objectStore = db.transaction(["items_os"], "readwrite").objectStore("items_os");
@@ -98,7 +114,7 @@ var items = (function () {
         $module = $('.content');
         title = $module.find('.list-title');
         titleInput = title.find('textarea');
-        list = $module.find('ul');
+        //list = $module.find('ul');
         items = $module.find('li');
         inputs = items.find('textarea');
         newItemField = $module.find('.new-li');
@@ -176,7 +192,8 @@ var items = (function () {
 
     return {
         autoGrow: autoGrow,
-        displayData: displayData
+        displayData: displayData,
+        displayTitle: displayTitle
     }
 
 })();
@@ -184,15 +201,24 @@ var items = (function () {
 
 $(window).on('load', function () {
 
+    // Save inital title value to localstorage
+    if (typeof(Storage) !== "undefined") {
+        if ("titleName" in localStorage) {
+            items.displayTitle();
+        } else {
+            localStorage.setItem("titleName", "List Title 📋");
+        }
+    } else {
+        console.log("Browser doesn’t support local storage!");  
+    }
+
     // Open the database
     let request = window.indexedDB.open('items_db', 1);
 
-    // DB didn't open successfully
     request.onerror = function() {
         console.log('Database failed to open');
     };
     
-    // DB opened successfully
     request.onsuccess = function() {
         console.log('Database opened successfully');
     
@@ -217,6 +243,7 @@ $(window).on('load', function () {
 
             var itemsObjectStore = db.transaction("items_os", "readwrite").objectStore("items_os");
             
+            //itemsObjectStore.add({itemName: "List Title 📋"});
             itemsObjectStore.add({itemName: "Left click to edit items 🚧"});
             itemsObjectStore.add({itemName: "Click somewhere else or press enter to save."});
             itemsObjectStore.add({itemName: "Right click (or long press if on mobile) to mark item as done 👈"});

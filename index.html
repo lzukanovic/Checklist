@@ -9,25 +9,12 @@
 
     <body>
         <div class="content">
-            <section class="list-title">
-                <div>List Title &#128203;</div>
-                <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">List Title &#128203;</textarea>
+            <section id="list-title" class="list-title">
+                <div></div>
+                <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)"></textarea>
             </section>
             <section class="list">
                 <ul id="item-list">
-                    <!-- <li>
-                        <div>Left click to edit items &#128679;</div>
-                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Left click to edit items &#128679;</textarea>
-                    </li>
-                    <li>
-                        <div>Click somewhere else or press enter to save.</div>
-                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Click somewhere else or press enter to save.</textarea>
-                    </li>
-                    <li>
-                        <div>Right click (or long press if on mobile) to mark item as done &#128072;</div>
-                        <textarea onfocus="items.autoGrow(this)" oninput="items.autoGrow(this)">Right click (or long press if on mobile) to mark item as done &#128072;</textarea>
-                    </li> -->
-
                     <script id="list-item-template" type="text/template">
                         <li data-item-id={{dataItemId}}>
                             <div>{{itemName}}</div>
