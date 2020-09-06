@@ -114,7 +114,6 @@ var items = (function () {
         $module = $('.content');
         title = $module.find('.list-title');
         titleInput = title.find('textarea');
-        //list = $module.find('ul');
         items = $module.find('li');
         inputs = items.find('textarea');
         newItemField = $module.find('.new-li');
