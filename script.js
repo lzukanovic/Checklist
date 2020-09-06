@@ -206,6 +206,7 @@ $(window).on('load', function () {
             items.displayTitle();
         } else {
             localStorage.setItem("titleName", "List Title 📋");
+            items.displayTitle();
         }
     } else {
         console.log("Browser doesn’t support local storage!");  
