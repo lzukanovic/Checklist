@@ -1,6 +1,6 @@
 // TODO: updating existing items in db
 // TODO: deleting checked items from db, but visually getting rid of them after some time
-
+//
 // TODO: fix bullet move for single line with emoji
 
 // TODO: upgrade scroll bar
