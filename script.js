@@ -1,6 +1,6 @@
 // TODO: updating existing items in db
 // TODO: deleting checked items from db, but visually getting rid of them after some time
-//
+
 // TODO: fix bullet move for single line with emoji
 
 // TODO: upgrade scroll bar
@@ -243,7 +243,6 @@ $(window).on('load', function () {
 
             var itemsObjectStore = db.transaction("items_os", "readwrite").objectStore("items_os");
             
-            //itemsObjectStore.add({itemName: "List Title 📋"});
             itemsObjectStore.add({itemName: "Left click to edit items 🚧"});
             itemsObjectStore.add({itemName: "Click somewhere else or press enter to save."});
             itemsObjectStore.add({itemName: "Right click (or long press if on mobile) to mark item as done 👈"});
