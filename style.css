@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;700;800&display=swap');
 @keyframes extend {
     from {
-        min-width: 0;
+        min-width: 50%;
         /* border-bottom: 2px solid var(--accent-color); */
     }
     to {
@@ -370,7 +370,7 @@ p {
     }
 }
 
-/* mouse, touch pad */
+/* mouse, touch pad (aka PC) */
 @media (hover: hover) and (pointer: fine) {
     .new-li:hover {
         /* animation: hover-color 0.4s ease; */
