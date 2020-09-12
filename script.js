@@ -1,9 +1,8 @@
-// TODO: iOS Safari - single click checks item (improve swipe detection)
-// TODO: iOS Safari - single click between items goes into edit mode
 // TODO: iOS Safari - new list item focus/blur problem on click
 // TODO: iOS Safari - new list item textarea not same with as div (happens because the class doesnt change because of above)
 
 // TODO: fix bullet move for single line with emoji
+// TODO: remove touch event listeners while in edit mode
 
 // TODO: upgrade scroll bar
 // TODO: keep focus for easier multiple item input
@@ -58,12 +57,20 @@ var items = (function () {
     };
     
     function newListItemActivity() {        
-        if ($(this).is(":focus")) {
+        /* if ($(this).is(":focus")) {
             $(this.parentNode).addClass('active');
             $(this.parentNode).removeClass('deactive');
         } else {
             $(this.parentNode).removeClass('active');
             $(this.parentNode).addClass('deactive');
+        } */
+
+        if ($(this.parentNode).hasClass('deactive')) {
+            $(this.parentNode).addClass('active');
+            $(this.parentNode).removeClass('deactive');
+        } else {
+            $(this.parentNode).addClass('deactive');
+            $(this.parentNode).removeClass('active');
         }
     };
 
