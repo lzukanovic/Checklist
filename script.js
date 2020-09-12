@@ -1,6 +1,3 @@
-// TODO: iOS Safari - new list item focus/blur problem on click
-// TODO: iOS Safari - new list item textarea not same with as div (happens because the class doesnt change because of above)
-
 // TODO: fix bullet move for single line with emoji
 // TODO: remove touch event listeners while in edit mode
 
@@ -12,9 +9,8 @@ let db;
 
 var items = (function () {
     
-    var $module, title, titleInput, list, items, inputs, newItemField, newInput, template;
+    var $module, title, titleInput, items, inputs, newItemField, newInput, template;
     updateDOM();
-    //updateListeners();
 
     function displayTitle() {
         let titleName = localStorage.getItem("titleName");
@@ -57,14 +53,6 @@ var items = (function () {
     };
     
     function newListItemActivity() {        
-        /* if ($(this).is(":focus")) {
-            $(this.parentNode).addClass('active');
-            $(this.parentNode).removeClass('deactive');
-        } else {
-            $(this.parentNode).removeClass('active');
-            $(this.parentNode).addClass('deactive');
-        } */
-
         if ($(this.parentNode).hasClass('deactive')) {
             $(this.parentNode).addClass('active');
             $(this.parentNode).removeClass('deactive');
@@ -76,6 +64,9 @@ var items = (function () {
 
     function edit() {
         $(this).off();
+        //this.removeEventListener('touchstart', tsListener, false);
+        //this.removeEventListener('touchend', teListener, false);
+
         $(this).addClass('edit');
         var input = $(this).find('textarea');
         input[0].focus();
@@ -152,12 +143,12 @@ var items = (function () {
         checkables.on('contextmenu', checkItem);
         // Mobile event listener
         for (var i = 0; i < checkables.length; i++) {
-            checkables[i].addEventListener('touchstart', function(event) {
+            checkables[i].addEventListener('touchstart', function tsListener(event) {
                 touchstartX = event.changedTouches[0].screenX;
                 touchstartY = event.changedTouches[0].screenY;
             }, false);
 
-            checkables[i].addEventListener('touchend', function(event) {
+            checkables[i].addEventListener('touchend', function teListener(event) {
                 touchendX = event.changedTouches[0].screenX;
                 touchendY = event.changedTouches[0].screenY;
                 // Right swipe
