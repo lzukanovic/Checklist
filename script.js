@@ -1,5 +1,4 @@
 // TODO: fix bullet move for single line with emoji
-// TODO: remove touch event listeners while in edit mode
 
 // TODO: upgrade scroll bar
 // TODO: keep focus for easier multiple item input
@@ -286,7 +285,7 @@ $(window).on('load', function () {
 */
 $("#myButton").click(function(){
     var icon = this.children[0];
-
+    
     if ($("#myFooter").is(":visible")) {
         $("#myFooter").slideUp(500);
         // ?
@@ -298,6 +297,11 @@ $("#myButton").click(function(){
         // x
         $(icon).removeClass('fa-question');
         $(icon).addClass('fa-times');
+        
+        // scroll to bottom of page
+        setTimeout( () => {
+            $('html,body').animate({scrollTop: document.body.scrollHeight},"linear");
+        }, 400);
     }
 
 });

@@ -212,6 +212,10 @@ li.edit textarea {
     text-decoration: line-through;
 }
 
+/* 
+*   FOOTER 
+*/
+
 .buttonContainer {
     display: flex;
     justify-content: flex-end;
@@ -235,12 +239,9 @@ li.edit textarea {
 
 .footerLip {
     background-color: var(--secondary-color);
-    height: 10px;
+    min-height: 10px;
 }
 
-/* 
-*   FOOTER 
-*/
 footer {
     background-color: var(--secondary-color);
     display: none;
