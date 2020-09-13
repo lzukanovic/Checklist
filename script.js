@@ -153,7 +153,9 @@ var items = (function () {
                 touchendY = event.changedTouches[0].screenY;
                 // Right swipe
                 if (touchendX > touchstartX) {
-                    checkItem.call(this);
+                    // Delete not possible if item is in edit mode
+                    if (!$(this).hasClass('edit'))
+                        checkItem.call(this);
                 }
             }, false); 
         }
@@ -271,7 +273,7 @@ $(window).on('load', function () {
             
             itemsObjectStore.add({itemName: "Left click to edit items 🚧"});
             itemsObjectStore.add({itemName: "Click somewhere else or press enter to save."});
-            itemsObjectStore.add({itemName: "Right click (or long press if on mobile) to mark item as done 👈"});
+            itemsObjectStore.add({itemName: "Right click (or swipe right if on mobile) to mark item as done 👈"});
         };
     
         console.log('Database setup complete');
